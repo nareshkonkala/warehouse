@@ -12,4 +12,6 @@ public interface ItemDao {
 	
 	public Item getOneItemById(Integer id);
 	public List<Item> getAllItems();
+	
+	
 }

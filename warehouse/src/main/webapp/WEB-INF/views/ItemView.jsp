@@ -19,13 +19,15 @@
 				<table class="table table-border table-hover">
 					<thead>
 						<tr class="bg-dark text-white">
-							<th scope="col">ID</th>
-							<th scope="col">CODE</th>
-							<th scope="col">WIDTH</th>
-							<th scope="col">LENGTH</th>
-							<th scope="col">HEIGHT</th>
-							<th scope="col">BASE-COST</th>
-							<th scope="col">BASE-CURRENCY</th>
+							<th >ID</th>
+							<th >CODE</th>
+							<th >WIDTH</th>
+							<th >LENGTH</th>
+							<th >HEIGHT</th>
+							<th >BASE-COST</th>
+							<th >BASE-CURRENCY</th>
+							<th >UOM-MODEL</th>
+							<th >ORDER-MODEL</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,6 +39,8 @@
 							<td>${item.itemHeight}</td>
 							<td>${item.itemCost}</td>
 							<td>${item.baseCurrency}</td>
+							<td>${item.umoOb.umoModel}</td>
+							<td>${item.orderOb.orderMode}</td>
 						</tr>
 					</tbody>
 				</table>

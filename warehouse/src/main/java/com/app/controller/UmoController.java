@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.model.Umo;
 import com.app.service.IUmoService;
+import com.app.validate.UmoValidator;
 
 @Controller
 @RequestMapping("/umo")
 public class UmoController {
+	
 	@Autowired
 	private IUmoService service;
+	
+	@Autowired
+	private UmoValidator umoValidator;
 		
-
-	@SuppressWarnings("unused")
+	
 	@RequestMapping("/regi")
 	public String showUmoForm(@ModelAttribute("umoregi") Umo u,ModelMap map) {
 
@@ -30,27 +35,19 @@ public class UmoController {
 	}
 
 	@RequestMapping(value = "/send", method = RequestMethod.POST )
-	public String insertDataUmoRegiPage(@ModelAttribute Umo umo ,ModelMap map ) {
-		
-		service.saveUmo(umo);
-		map.addAttribute("umo",umo);
-		return "UmoData";
+	public String insertDataUmoRegiPage(@ModelAttribute Umo umoregi ,ModelMap map ,Errors errors) {
+		umoValidator.validate(umoregi, errors);
+		if(! errors.hasErrors()) {
+			Integer id=service.saveUmo(umoregi);
+			map.addAttribute("msg","Umo '"+id+"' Saved");
+			map.addAttribute("umo",new Umo());
 
+		}else {
+			map.addAttribute("msg","Please Check All Errors..!!");
+		}
+		return "UomRigister";
 	}
 
-	/*
-	 * @RequestMapping(value = "/send", method = RequestMethod.POST ) public String
-	 * insertDataUmoRegiPage(@ModelAttribute Umo umo ,ModelMap map ,Errors errors) {
-	 * 
-	 * String str=new String(); validator.validate(umo, errors);
-	 * 
-	 * if(errors.hasErrors()) { str="UomRigister"; }else {
-	 * map.addAttribute("umo",umo); service.saveUmo(umo); str="UmoData"; }
-	 * 
-	 * return str;
-	 * 
-	 * }
-	 */
 	@RequestMapping("/all")
 	public String showAllRecords(ModelMap map) {
 		
@@ -85,6 +82,7 @@ public class UmoController {
 		
 		return "UmoViewData";
 	}
-	
 
+	
+	
 }

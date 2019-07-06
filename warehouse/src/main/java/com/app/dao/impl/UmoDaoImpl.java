@@ -41,5 +41,19 @@ public class UmoDaoImpl implements IUmoDao {
 	public List<Umo> getAllUmos() {
 		return ht.loadAll(Umo.class);
 	}
+	
+	@Override
+	public boolean isUmoModelExist(String umomodel) {
+		long count=0;
+		
+		String hql="select count(umoModel) from com.app.model.Umo where umoModel=?0";
+		
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Long> list=(List<Long>) ht.find(hql, umomodel);
+		if(list != null && !list.isEmpty()) {
+			count=list.get(0);
+		}
+		return count !=0 ? true : false ;
+	}
 
 }

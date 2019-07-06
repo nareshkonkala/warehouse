@@ -12,5 +12,7 @@ public interface WhUserDao {
 	
 	public WhUserType gerOneWhUser(Integer id);
 	public List<WhUserType> gerAllWhUsers();
+	
+	public List<WhUserType> getAllUserType(String whType);
 
 }

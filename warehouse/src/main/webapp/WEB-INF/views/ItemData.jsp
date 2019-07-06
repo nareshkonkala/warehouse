@@ -31,6 +31,8 @@
 						<th scope="col">CODE</th>
 						<th scope="col">BASE-COST</th>
 						<th scope="col">BASE-CURRENCY</th>
+						<th scope="col">ITEM UOM</th>
+						<th scope="col">ORDER CODE</th>
 						<th scope="col" colspan="3">OPERATIONS</th>
 					</tr>
 					<c:forEach items="${list}" var="obj">
@@ -39,6 +41,8 @@
 							<td><c:out value="${obj.itemCode}" /></td>
 							<td><c:out value="${obj.itemCost}" /></td>
 							<td><c:out value="${obj.baseCurrency}" /></td>
+							<td><c:out value="${obj.umoOb.umoModel}" /></td>
+							<td><c:out value="${obj.orderOb.orderMode}" /></td>
 							<th><a href="delete?id=${obj.id}" class=""><img src="../resources/images/delete.png" height="50" width="60"></a></th>
 							<th><a href="edit?id=${obj.id}" class=""><img src="../resources/images/edit.png" height="50" width="50"></a></th>
 							<td><a href="viewOne?id=${obj.id}" class=""> <img src="../resources/images/search.png" height="50" width="50"></a></td>

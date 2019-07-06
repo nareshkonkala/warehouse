@@ -10,5 +10,7 @@ public interface IUmoService {
 	public void deleteUmo(Integer id);
 	public Umo getOneUmo(Integer id);
 	public List<Umo> getAllUmos();
+	
+	public boolean isUmoModelExist(String umomodel);
 
 }

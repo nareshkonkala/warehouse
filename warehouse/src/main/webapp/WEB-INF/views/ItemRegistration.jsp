@@ -75,7 +75,33 @@
 				</div>
 			</div>
 			<br>
-		
+		<hr>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-2">
+					<form:label path="umoOb.umoId">Item UOM :</form:label>
+				</div>
+				<div class="col-4">
+					<form:select path="umoOb.umoId" class="form-control" >
+						<form:option value="">--SELECT--</form:option>
+						<form:options items="${umos}" itemLabel="umoModel" itemValue="umoId"/>
+					</form:select>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-2">
+					<form:label path="orderOb.orderId">Item Order :</form:label>
+				</div>
+				<div class="col-4">
+					<form:select path="orderOb.orderId" class="form-control" >
+						<form:option value="">--SELECT--</form:option>
+						<form:options items="${orders}" itemLabel="orderMode" itemValue="orderId"/>
+					</form:select>
+				</div>
+			</div>
+			<br>
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col-4">

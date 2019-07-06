@@ -46,4 +46,9 @@ public class UmoServiceImpl implements IUmoService {
 		return dao.getAllUmos();
 	}
 
+	@Override
+	public boolean isUmoModelExist(String umomodel) {
+		
+		return dao.isUmoModelExist(umomodel);
+	}
 }

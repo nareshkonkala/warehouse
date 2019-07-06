@@ -55,5 +55,7 @@ public class ShipmentTypeDaoImpl implements IShipmentTypeDao {
 		
 		return list;
 	}
+	
+	
 
 }

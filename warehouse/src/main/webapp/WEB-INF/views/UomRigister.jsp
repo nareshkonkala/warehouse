@@ -11,8 +11,6 @@
 </head>
 <body>
 	<div class="container">
-
-
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-6">
@@ -22,7 +20,6 @@
 		</div>
 		<br>
 		<form:form action="send" method="POST" modelAttribute="umoregi">
-			
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col-2">
@@ -35,6 +32,7 @@
 						<form:option value="NO-PAKING">NO-PAKING</form:option>
 						<form:option value="-NA-">-NA-</form:option>
 					</form:select>
+					<form:form path="umoType"></form:form>
 				</div>
 			</div>
 			<br>
@@ -45,6 +43,7 @@
 				</div>
 				<div class="col-4">
 					<form:input path="umoModel" class="form-control" name="model"/>
+					<form:errors path="umoModel"></form:errors>
 				</div>
 			</div>
 			<br>
@@ -55,6 +54,7 @@
 				</div>
 				<div class="col-4">
 					<form:textarea path="note" class="form-control" name="note" />
+					<form:errors path="note"></form:errors>
 				</div>
 			</div>
 			<br>
@@ -63,7 +63,6 @@
 				<div class="col-4">
 					<input type="submit" class="btn btn-primary" value="CREATE" />
 				</div>
-
 				<div class="col-4">
 					<a href="all" class="btn btn-danger"> View All</a>
 				</div>

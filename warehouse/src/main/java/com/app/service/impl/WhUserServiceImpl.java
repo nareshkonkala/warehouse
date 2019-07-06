@@ -47,4 +47,8 @@ public class WhUserServiceImpl implements WhUserService {
 		return dao.gerAllWhUsers();
 	}
 
+	@Override
+	public List<WhUserType> getAllUserType(String whType) {
+		return dao.getAllUserType(whType);
+	}
 }

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.model.Item;
+import com.app.model.Order;
+import com.app.model.Umo;
+import com.app.service.IOrderService;
+import com.app.service.IUmoService;
 import com.app.service.ItemService;
 
 @Controller
@@ -20,18 +24,37 @@ public class ItemController {
 	@Autowired
 	private ItemService service;
 	
+	@Autowired
+	private IUmoService umoService;
+	
+	@Autowired
+	private IOrderService orderService;
+	
 	@RequestMapping("/regi")
 	public String showItem(Model map) {
 		map.addAttribute("item",new Item());
+		
+		List<Umo> umos=umoService.getAllUmos();
+		map.addAttribute("umos",umos);
+		
+		List<Order> orders=orderService.getAllOrders();
+		map.addAttribute("orders",orders);
 		
 		return "ItemRegistration";
 	}
 	
 	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public String saveItem(@ModelAttribute Item item, Model map) {
+		
 		Integer id=service.saveItem(item);
 		map.addAttribute("msg","Item '"+id+"' Stored Successfully");
 		map.addAttribute("item",new Item());
+		
+		List<Umo> umos=umoService.getAllUmos();
+		map.addAttribute("umos",umos);
+		
+		List<Order> orders=orderService.getAllOrders();
+		map.addAttribute("orders",orders);
 		
 		return "ItemRegistration";
 	}
@@ -66,7 +89,13 @@ public class ItemController {
 	@RequestMapping("/edit")
 	public String editItem(@RequestParam Integer id,Model map) {
 		Item obs=service.getOneItemById(id);
-		map.addAttribute("list",obs);
+		map.addAttribute("item",obs);
+		
+		List<Umo> umos=umoService.getAllUmos();
+		map.addAttribute("umos",umos);
+		
+		List<Order> orders=orderService.getAllOrders();
+		map.addAttribute("orders",orders);
 		
 		return "ItemEdit";
 	}
@@ -76,6 +105,8 @@ public class ItemController {
 		
 		service.updateItem(item);
 		map.addAttribute("msg","Updated '"+item.getId()+"' Successfully..!!");
-		return "redirect:viewAll";
+		List<Item> ob=service.getAllItems();
+		map.addAttribute("list",ob);
+		return "ItemData";
 	}
 }

@@ -41,5 +41,12 @@ public class WhUserDaoImpl implements WhUserDao {
 	public List<WhUserType> gerAllWhUsers() {
 		return ht.loadAll(WhUserType.class);
 	}
+	
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<WhUserType> getAllUserType(String type) {
+		String hql="from com.app.model.WhUserType w where w.whType = ?0";
+		return (List<WhUserType>) ht.find(hql, type);
+	}
 
 }
